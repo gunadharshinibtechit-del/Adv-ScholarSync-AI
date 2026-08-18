@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}My Profile - ScholarSync AI{% endblock %}
+{% block content %}
+<div class="page-head compact-head"><div><span class="eyebrow dark">PERSONAL SPACE</span><h1>My Profile</h1><p>Keep your academic details ready so ScholarSync can tailor your study experience.</p></div><div class="profile-avatar" id="avatar">S</div></div>
+<div class="profile-grid">
+  <section class="panel profile-main">
+    <div class="panel-title"><div><span class="icon-bubble">🎓</span><div><h3>Student information</h3><p>Used only to personalize your workspace.</p></div></div><span class="status-pill">● Account active</span></div>
+    <form id="profileForm" class="row g-3">
+      <div class="col-md-6"><label>Full name</label><input id="profName" class="form-control" maxlength="100" placeholder="Your name"></div>
+      <div class="col-md-6"><label>Email</label><input id="profEmail" class="form-control" disabled></div>
+      <div class="col-md-6"><label>Register number</label><input id="profReg" class="form-control" maxlength="30" placeholder="e.g. 23IT101"></div><div class="col-md-6"><label>Department</label><input id="profDept" class="form-control" maxlength="100" placeholder="B.Tech IT"></div>
+      <div class="col-md-6"><label>Academic year</label><select id="profYear" class="form-select"><option value="">Select year</option><option value="1">1st Year</option><option value="2">2nd Year</option><option value="3">3rd Year</option><option value="4">4th Year</option></select></div><div class="col-md-6"><label>Semester</label><select id="profSem" class="form-select"><option value="">Select semester</option>{% for s in range(1,9) %}<option>{{s}}</option>{% endfor %}</select></div>
+      <div class="col-12"><label>Current goal</label><input id="profGoal" class="form-control" maxlength="180" placeholder="e.g. Score well in semester exams and improve Python"></div>
+      <div class="col-12"><label>About your learning style</label><textarea id="profBio" class="form-control" rows="4" maxlength="500" placeholder="Tell the AI how you like explanations..."></textarea></div>
+      <div class="col-12 d-flex align-items-center gap-3"><button class="ss-btn px-4" type="submit">Save profile</button><span id="profileStatus" class="small text-muted"></span></div>
+    </form>
+  </section>
+  <aside class="profile-side">
+    <div class="panel stat-panel"><span>📚</span><b id="docCount">0</b><small>Study files</small></div>
+    <div class="panel stat-panel"><span>🤖</span><b>AI</b><small>Personal study copilot</small></div>
+    <div class="panel tip-panel"><span>💡</span><div><b>Tip</b><p>Upload your syllabus or notes in <a href="/notes">Notes</a>, then select the PDF in Chat for grounded answers.</p></div></div>
+  </aside>
+</div>
+{% endblock %}
+{% block scripts %}<script type="module" src="{{ url_for('static', filename='js/profile.js') }}"></script>{% endblock %}

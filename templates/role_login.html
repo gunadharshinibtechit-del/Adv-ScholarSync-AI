@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}{{ role|title }} Login | ScholarSync AI{% endblock %}
+{% block content %}
+<div class="role-auth" data-role="{{ role }}">
+  <div class="role-auth-visual {{ role }}">
+    <a href="/" class="back-home">← Choose portal</a>
+    <div class="brand-lockup"><span class="brand-mark large">✦</span><span>ScholarSync <b>AI</b></span></div>
+    {% if role == 'student' %}
+    <span class="eyebrow">STUDENT LEARNING SPACE</span>
+    <h1>Your AI study desk, built around <span>your semester.</span></h1>
+    <div class="role-points"><div>📚 <b>PDF Study Vault</b><small>Ask questions directly from your notes.</small></div><div>📝 <b>Exam Answer Studio</b><small>Generate 2, 5, 10, 13 and 16-mark answers.</small></div><div>🎯 <b>Smart Revision</b><small>Quiz, planner and viva practice in one place.</small></div></div>
+    {% else %}
+    <span class="eyebrow">FACULTY ACADEMIC SPACE</span>
+    <h1>Help every learner with a clearer <span>academic picture.</span></h1>
+    <div class="role-points"><div>👥 <b>Student Directory</b><small>Find students by name, register number, year or semester.</small></div><div>🗂️ <b>Academic Profiles</b><small>View verified academic details and study-file metadata.</small></div><div>📣 <b>Mentoring Hub</b><small>Add private mentoring notes and post class announcements.</small></div></div>
+    {% endif %}
+  </div>
+  <div class="role-auth-panel">
+    <div class="role-auth-card">
+      <div class="role-badge">{% if role == 'student' %}🎓 Student{% else %}👩‍🏫 Faculty{% endif %}</div>
+      <div class="auth-tabs"><button id="loginTab" class="auth-tab active">Sign In</button><button id="registerTab" class="auth-tab">Create Account</button></div>
+      <div id="authMessage" class="alert d-none"></div>
+      <div id="registerFields" class="d-none">
+        <div class="field-wrap"><label>Full name</label><input id="name" class="form-control" placeholder="Your full name"></div>
+        {% if role == 'student' %}
+        <div class="field-row"><div class="field-wrap"><label>Register number</label><input id="regNo" class="form-control" placeholder="e.g. 23IT101"></div><div class="field-wrap"><label>Department</label><input id="department" class="form-control" placeholder="B.Tech IT"></div></div>
+        <div class="field-row"><div class="field-wrap"><label>Year</label><select id="year" class="form-select"><option value="">Select</option><option>1</option><option>2</option><option>3</option><option>4</option></select></div><div class="field-wrap"><label>Semester</label><select id="semester" class="form-select"><option value="">Select</option>{% for s in range(1,9) %}<option>{{s}}</option>{% endfor %}</select></div></div>
+        {% else %}
+        <div class="field-row"><div class="field-wrap"><label>Employee / Faculty ID</label><input id="employeeId" class="form-control" placeholder="e.g. FAC102"></div><div class="field-wrap"><label>Department</label><input id="department" class="form-control" placeholder="CSE / IT"></div></div>
+        <div class="field-row"><div class="field-wrap"><label>Designation</label><input id="designation" class="form-control" placeholder="Assistant Professor"></div><div class="field-wrap"><label>Subjects handled</label><input id="subjects" class="form-control" placeholder="CN, OS, AI"></div></div>
+        {% endif %}
+      </div>
+      <div class="field-wrap"><label>Email address</label><input id="email" class="form-control" type="email" placeholder="name@college.edu" autocomplete="email"></div>
+      <div class="field-wrap"><label>Password</label><input id="password" class="form-control" type="password" placeholder="Minimum 6 characters" autocomplete="current-password"></div>
+      <button id="loginBtn" class="auth-primary">Sign in as {{ role|title }} <span>→</span></button>
+      <button id="registerBtn" class="auth-primary d-none">Create {{ role|title }} Account <span>→</span></button>
+      <p class="auth-safe">🔐 Firebase Authentication handles passwords. Academic profile details are stored in Firestore.</p>
+      <div class="auth-mini-note">{% if role == 'student' %}Use your official register number, year and semester so faculty can identify your academic profile correctly.{% else %}Create your faculty profile with your official faculty ID and department. Student search access is role-protected.{% endif %}</div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}<script>window.SCHOLAR_ROLE="{{ role }}";</script><script type="module" src="{{ url_for('static', filename='js/role_auth.js') }}?v=6"></script>{% endblock %}

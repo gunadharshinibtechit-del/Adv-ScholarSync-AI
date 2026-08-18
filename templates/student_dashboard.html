@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Student Dashboard | ScholarSync AI{% endblock %}
+{% block content %}
+<div class="dash-hero student-hero"><div><span class="eyebrow dark">STUDENT COMMAND CENTER</span><h1>Hi, <span id="studentName">Student</span> 👋</h1><p id="studentMeta">Your AI study space is ready.</p></div><a href="/profile" class="profile-chip"><span id="studentAvatar">S</span><div><b>My Profile</b><small>Academic identity</small></div>→</a></div>
+<div class="student-layout"><main>
+  <section class="feature-grid-large">
+    <a href="/chat" class="dash-feature"><span>🤖</span><div><small>AI COPILOT</small><h3>Ask anything</h3><p>Concept explanations, doubts, step-by-step learning and PDF-grounded answers.</p></div><b>Open →</b></a>
+    <a href="/notes" class="dash-feature"><span>📄</span><div><small>PDF VAULT</small><h3>My study material</h3><p>Upload PDFs/TXT files and keep them ready for Chat, Quiz and Exam Answer Studio.</p></div><b>Open →</b></a>
+    <a href="/quiz" class="dash-feature"><span>🧠</span><div><small>PRACTICE</small><h3>AI Quiz Arena</h3><p>Create MCQs from a topic or your uploaded material and identify weak areas.</p></div><b>Start →</b></a>
+    <a href="/planner" class="dash-feature"><span>📅</span><div><small>REVISION</small><h3>Smart Planner</h3><p>Build a realistic study schedule around your exam date, available hours and weak topics.</p></div><b>Plan →</b></a>
+    <a href="/chat?mode=exam" class="dash-feature"><span>📝</span><div><small>EXAM STUDIO</small><h3>Mark-wise answers</h3><p>Prepare 2, 5, 10, 13 and 16-mark answers in an exam-friendly format.</p></div><b>Prepare →</b></a>
+    <a href="/chat?mode=viva" class="dash-feature"><span>🎤</span><div><small>VIVA</small><h3>Viva practice</h3><p>Practice short oral questions and build confidence before lab or project reviews.</p></div><b>Practice →</b></a>
+  </section>
+  <section class="panel announcement-panel"><div class="section-heading"><div><span>📣</span><div><b>Faculty announcements</b><small>Updates shared with your academic community</small></div></div></div><div id="studentAnnouncements"><div class="empty-state">Loading announcements...</div></div></section>
+</main><aside class="dash-side">
+  <div class="panel progress-card"><span class="eyebrow dark">YOUR PROFILE</span><div class="identity-line"><span id="sideAvatar">S</span><div><b id="sideName">Student</b><small id="sideReg">Register number</small></div></div><div class="identity-tags"><span id="sideDept">Department</span><span id="sideYear">Year</span><span id="sideSem">Semester</span></div><a href="/profile" class="soft-btn w-100">View / Edit profile</a></div>
+  <div class="panel quick-card"><b>Quick actions</b><a href="/notes">＋ Upload PDF</a><a href="/chat">＋ Ask AI</a><a href="/quiz">＋ Create quiz</a><a href="/planner">＋ Build planner</a></div>
+</aside></div>
+{% endblock %}
+{% block scripts %}<script type="module" src="{{ url_for('static', filename='js/student_dashboard.js') }}"></script>{% endblock %}

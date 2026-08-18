@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}PDF Library - ScholarSync AI{% endblock %}
+{% block content %}
+<div class="page-head"><div><span class="eyebrow dark">KNOWLEDGE LIBRARY</span><h1>Your study files</h1><p>Upload PDFs and text notes once, then use them across Chat, Quiz and Exam Answer Studio.</p></div><a href="/chat" class="ss-btn">Open AI Chat →</a></div>
+<section class="upload-hero panel" id="dropZone"><div class="upload-icon">☁</div><h3>Drop your PDF here</h3><p>or choose a file from your computer</p><label class="upload-select" for="file">Choose PDF / TXT</label><input id="file" type="file" accept=".pdf,.txt" class="d-none"><div id="selectedFileName" class="selected-file"></div><button id="uploadBtn" class="ss-btn d-none">Upload & Process</button><div id="uploadStatus" class="upload-progress d-none"><span class="spinner-border spinner-border-sm"></span><span id="statusText">Processing...</span></div><small class="upload-hint">PDF and TXT • Up to 25 MB • Text-based PDFs work best</small></section>
+<section class="panel library-panel"><div class="panel-title"><div><h3>📚 Document library</h3><p>Every uploaded file is private to your account.</p></div><span id="docCountBadge" class="count-pill">0 files</span></div><div class="table-responsive"><table class="table ss-table align-middle"><thead><tr><th>Document</th><th>Size / chunks</th><th>Uploaded</th><th></th></tr></thead><tbody id="documents"><tr><td colspan="4" class="text-center text-muted py-5">Loading your library...</td></tr></tbody></table></div></section>
+{% endblock %}
+{% block scripts %}<script type="module" src="{{ url_for('static', filename='js/notes.js') }}"></script>{% endblock %}

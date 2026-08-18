@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}ScholarSync AI | Choose Portal{% endblock %}
+{% block content %}
+<div class="portal-gateway">
+  <div class="gateway-hero">
+    <div class="brand-lockup"><span class="brand-mark large">✦</span><span>ScholarSync <b>AI</b></span></div>
+    <span class="eyebrow dark">AI ACADEMIC COMPANION</span>
+    <h1>One platform.<br><span>Two academic journeys.</span></h1>
+    <p>Students get a focused AI study workspace. Faculty get a secure academic support workspace with student directory and mentoring tools.</p>
+  </div>
+  <div class="portal-cards">
+    <a href="/student-login" class="portal-card student-card"><div class="portal-icon">🎓</div><div><span>STUDENT PORTAL</span><h2>Learn smarter</h2><p>AI chat, PDF study vault, exam answers, quizzes, planner, viva practice and your academic profile.</p></div><strong>Continue as Student →</strong></a>
+    <a href="/faculty-login" class="portal-card faculty-card"><div class="portal-icon">👩‍🏫</div><div><span>FACULTY PORTAL</span><h2>Support better</h2><p>Search students by name, register number, year and semester. View academic profiles, add mentoring notes and post announcements.</p></div><strong>Continue as Faculty →</strong></a>
+  </div>
+  <div class="gateway-trust"><span>🔐 Firebase Authentication</span><span>☁️ Firestore profiles</span><span>📄 PDF intelligence</span><span>🤖 AI powered</span></div>
+</div>
+{% endblock %}

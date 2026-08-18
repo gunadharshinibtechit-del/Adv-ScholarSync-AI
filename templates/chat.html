@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}AI Study Chat - ScholarSync AI{% endblock %}
+{% block content %}
+<div class="workspace-head"><div><span class="eyebrow dark">AI STUDY COPILOT</span><h1>Ask. Understand. Remember.</h1><p>Use normal chat or ground every answer in your uploaded PDF.</p></div><div class="head-actions"><a href="/notes" class="soft-btn">📚 Library</a><a href="/profile" class="soft-btn">⚙ Profile</a></div></div>
+<div class="chat-layout">
+  <aside class="chat-sidebar panel">
+    <button id="newChatBtn" class="new-chat-btn">＋ New conversation</button>
+    <div class="side-section"><div class="side-label">LEARNING MODE</div><div class="mode-stack" id="modeStack">
+      <button class="mode-chip active" data-mode="normal"><span>💬</span><div><b>Normal</b><small>Clear academic answer</small></div></button>
+      <button class="mode-chip" data-mode="simple"><span>🌱</span><div><b>Explain simply</b><small>Beginner-friendly</small></div></button>
+      <button class="mode-chip" data-mode="exam"><span>📝</span><div><b>Exam ready</b><small>Structured marks answer</small></div></button>
+      <button class="mode-chip" data-mode="step"><span>🧩</span><div><b>Step by step</b><small>Detailed walkthrough</small></div></button>
+    </div></div>
+    <div class="side-section"><div class="side-label d-flex justify-content-between">YOUR PDFs <span id="docCountMini">0</span></div><label class="pdf-drop-mini" for="chatFile"><span>📎</span><b>Upload PDF</b><small>Ask questions from it instantly</small></label><input id="chatFile" type="file" accept=".pdf,.txt" class="d-none"><div id="chatDocs" class="doc-mini-list"></div></div>
+  </aside>
+
+  <section class="chat-panel panel">
+    <div class="chat-top"><div><span class="live-dot"></span><b>ScholarSync Assistant</b><small id="groundingStatus">General knowledge mode</small></div><button id="clearChatBtn" class="icon-btn" title="Clear chat">⌫</button></div>
+    <div id="chatBox" class="chat-box"><div class="welcome-message"><div class="bot-orb">✦</div><h3>What are you learning today?</h3><p>Ask me to explain concepts, solve doubts, prepare exam answers, summarize your PDF, or quiz you.</p><div class="quick-prompts"><button data-prompt="Explain this concept in simple terms with an example.">🌱 Explain simply</button><button data-prompt="Give me an exam-ready answer with headings and key points.">📝 Exam answer</button><button data-prompt="Teach me this topic step by step and include a small example.">🧩 Step by step</button><button data-prompt="Create 5 viva questions from this topic with short answers.">🎤 Viva practice</button></div></div></div>
+    <div class="composer-wrap"><div class="composer-tools"><button class="tool-btn" id="attachChatBtn">📎 PDF</button><button class="tool-btn" data-prompt="Summarize the selected PDF into concise revision notes.">✨ Summarize PDF</button><button class="tool-btn" data-prompt="Make a quick revision checklist from the selected PDF.">☑ Revision list</button></div><div class="composer"><textarea id="question" rows="1" maxlength="5000" placeholder="Ask anything about your subject..."></textarea><button id="sendBtn" class="send-btn">↑</button></div><div class="composer-note">Enter to send • Shift + Enter for a new line • AI answers can make mistakes, so verify important facts.</div></div>
+  </section>
+
+  <aside class="chat-tools">
+    <section class="panel tool-panel"><div class="tool-panel-head"><span>📝</span><div><b>Exam Answer Studio</b><small>Generate mark-based answers</small></div></div><input id="subject" class="form-control" placeholder="Subject"><div class="row g-2"><div class="col-5"><select id="marks" class="form-select"><option>2</option><option>5</option><option>10</option><option>13</option><option>16</option></select></div><div class="col-7"><select id="answerDoc" class="form-select"><option value="">General answer</option></select></div></div><textarea id="examQuestion" class="form-control" rows="4" placeholder="Enter your exam question..."></textarea><button id="answerBtn" class="ss-btn w-100">Generate answer</button><div id="answerOutput" class="result-box d-none"></div></section>
+    <section class="panel tool-panel quick-tool"><div class="tool-panel-head"><span>⚡</span><div><b>Quick tools</b><small>One-click study actions</small></div></div><button class="quick-tool-btn" data-prompt="Explain the selected topic as if I am learning it for the first time.">Beginner explanation <span>→</span></button><button class="quick-tool-btn" data-prompt="List the most important points I should memorize for an exam.">Important points <span>→</span></button><button class="quick-tool-btn" data-prompt="Give me 5 likely viva questions and short answers.">Viva practice <span>→</span></button><button class="quick-tool-btn" data-prompt="Create a 10-question MCQ revision test based on the selected PDF.">Revision test <span>→</span></button></section>
+  </aside>
+</div>
+{% endblock %}
+{% block scripts %}<script type="module" src="{{ url_for('static', filename='js/chat.js') }}"></script>{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Faculty Dashboard | ScholarSync AI{% endblock %}
+{% block content %}
+<div class="dash-hero faculty-hero"><div><span class="eyebrow dark">FACULTY ACADEMIC COMMAND CENTER</span><h1>Welcome, <span id="facultyName">Faculty</span> 👩‍🏫</h1><p id="facultyMeta">Support students with AI and academic tools.</p></div><a href="/faculty-profile" class="profile-chip"><span id="facultyAvatar">F</span><div><b>Faculty Profile</b><small>Academic identity</small></div>→</a></div>
+<div class="faculty-layout">
+  <section class="panel directory-panel"><div class="section-heading"><div><span>👥</span><div><b>Student Directory</b><small>Search verified student profiles</small></div></div><span id="studentCount" class="count-pill">0 students</span></div>
+    <div class="filter-grid"><input id="studentSearch" class="form-control" placeholder="Search name or register number"><input id="deptFilter" class="form-control" placeholder="Department"><select id="yearFilter" class="form-select"><option value="">All years</option><option>1</option><option>2</option><option>3</option><option>4</option></select><select id="semFilter" class="form-select"><option value="">All semesters</option>{% for s in range(1,9) %}<option>{{s}}</option>{% endfor %}</select><button id="searchStudents" class="ss-btn">Search</button></div>
+    <div id="studentTable" class="student-table"><div class="empty-state">Loading student directory...</div></div>
+  </section>
+  <aside class="faculty-side">
+    <div class="panel faculty-tool"><div class="section-heading"><div><span>📣</span><div><b>Post announcement</b><small>Share an academic update</small></div></div></div><input id="announcementTitle" class="form-control mb-2" placeholder="Title"><textarea id="announcementMessage" class="form-control mb-2" rows="4" placeholder="Announcement message"></textarea><button id="postAnnouncement" class="ss-btn w-100">Publish announcement</button><small id="announcementStatus" class="form-status"></small></div>
+    <div class="panel faculty-tool"><div class="section-heading"><div><span>🤖</span><div><b>Faculty AI Copilot</b><small>Teaching and mentoring ideas</small></div></div></div><textarea id="facultyPrompt" class="form-control mb-2" rows="4" placeholder="e.g. Give a 20-minute activity to teach OS deadlocks."></textarea><button id="askFacultyAI" class="ss-btn w-100">Ask AI</button><div id="facultyAIResult" class="result-box d-none"></div></div>
+  </aside>
+</div>
+<div class="modal-backdrop-custom d-none" id="studentModal"><div class="student-detail-modal panel"><button class="modal-close" id="closeStudentModal">×</button><div id="studentDetailContent"></div></div></div>
+{% endblock %}
+{% block scripts %}<script type="module" src="{{ url_for('static', filename='js/faculty_dashboard.js') }}"></script>{% endblock %}
